@@ -1,12 +1,11 @@
-import { text, index, boolean, timestamp, pgSchema } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
+import { text, index, boolean, timestamp, pgSchema } from "drizzle-orm/pg-core";
 
-// Create your schema namespace - change "APP" to your project name
-export const AppSchema = pgSchema("APP");
+export const WMSSchema = pgSchema("WMS");
 
 // AUTHENTICATION #################################################
 
-export const users = AppSchema.table("AUTH_users", {
+export const users = WMSSchema.table("AUTH_users", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
@@ -19,7 +18,7 @@ export const users = AppSchema.table("AUTH_users", {
     .notNull(),
 });
 
-export const sessions = AppSchema.table(
+export const sessions = WMSSchema.table(
   "AUTH_sessions",
   {
     id: text("id").primaryKey(),
@@ -38,7 +37,7 @@ export const sessions = AppSchema.table(
   (table) => [index("session_userId_idx").on(table.userId)],
 );
 
-export const accounts = AppSchema.table(
+export const accounts = WMSSchema.table(
   "AUTH_accounts",
   {
     id: text("id").primaryKey(),
@@ -62,7 +61,7 @@ export const accounts = AppSchema.table(
   (table) => [index("account_userId_idx").on(table.userId)],
 );
 
-export const verifications = AppSchema.table(
+export const verifications = WMSSchema.table(
   "AUTH_verifications",
   {
     id: text("id").primaryKey(),

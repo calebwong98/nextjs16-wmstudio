@@ -3,7 +3,7 @@
 import Footer from "./_layout/Footer";
 import Header from "./_layout/Header";
 
-export default function HomeLayout({
+export default async function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

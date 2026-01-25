@@ -8,7 +8,7 @@ export default defineConfig({
   dbCredentials: {
     url: env.POSTGRES_URL,
   },
-  schemaFilter: ["APP"], // Change this to match your schema name
+  schemaFilter: ["WMS"], // Change this to match your schema name
   verbose: true,
   strict: true,
 });
