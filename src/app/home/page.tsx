@@ -1,10 +1,11 @@
-export default function HomePage() {
+import HaloRing from "@/components/icons/halo-ring";
+
+export default function MyHomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">WM Studio Starter</h1>
-      <p className="mt-4 text-muted-foreground">
-        Start building your next project
-      </p>
-    </main>
+    <>
+      <section></section>
+
+      <HaloRing />
+    </>
   );
 }

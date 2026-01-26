@@ -7,5 +7,9 @@ interface SignInPageProps {
 export default async function SignInPage({ searchParams }: SignInPageProps) {
   const { callbackUrl } = await searchParams;
 
-  return <SignInCard callbackUrl={callbackUrl} />;
+  return (
+    <div className="flex items-center flex-col justify-center w-full min-h-screen">
+      <SignInCard callbackUrl={callbackUrl} />
+    </div>
+  );
 }

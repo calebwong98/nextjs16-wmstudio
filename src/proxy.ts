@@ -39,7 +39,16 @@ export function proxy(req: NextRequest) {
    * --------------------------------
    * Enable by setting USE_SUBDOMAIN_ROUTING=true and BASE_DOMAIN in .env
    */
+  // Auth routes that should NOT be rewritten to /home
+  const isAuthRoute =
+    pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
+
   if (isProd && USE_SUBDOMAIN_ROUTING) {
+    // 🔐 Auth routes (served from app/(auth)/)
+    if (isHomeHost && isAuthRoute) {
+      return NextResponse.next();
+    }
+
     // 🏠 Home routes (main domain)
     if (isHomeHost) {
       return NextResponse.rewrite(
@@ -50,7 +59,6 @@ export function proxy(req: NextRequest) {
     // 🔒 All app subdomains require auth
     if (!sessionCookie) {
       const callbackUrl = encodeURIComponent(req.url);
-
       return NextResponse.redirect(
         `https://${AUTH_HOST}/sign-in?callbackUrl=${callbackUrl}`,
       );
@@ -73,6 +81,11 @@ export function proxy(req: NextRequest) {
    * --------------------------------
    * Routes are accessed via path prefixes (e.g., /admin/*)
    */
+
+  // 🔐 Auth routes (served from app/(auth)/)
+  if (isAuthRoute) {
+    return NextResponse.next();
+  }
 
   // 🏠 Home routes (everything not under /admin)
   if (!pathname.startsWith("/admin")) {
