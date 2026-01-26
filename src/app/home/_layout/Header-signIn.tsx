@@ -1,14 +1,14 @@
 "use client";
 
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 
-import Link from "next/link";
-
 export default function SignInButton({ className }: { className?: string }) {
   return (
-    <Button className={className} asChild>
+    <Button className={cn(className, "px-8")} asChild>
       <Link
         href={`/sign-in?callbackUrl=${encodeURIComponent(
           usePathname() + useSearchParams().toString(),
