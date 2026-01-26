@@ -9,7 +9,7 @@ export default async function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen container mx-auto">
       <Header />
       <main className="h-full w-full relative">{children}</main>
     </div>
