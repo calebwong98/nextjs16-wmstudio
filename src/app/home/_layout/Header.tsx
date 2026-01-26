@@ -14,14 +14,19 @@ export default async function Header() {
   });
 
   return (
-    <header className="space-y-2 w-full px-4 pt-4 sm:px-12 z-99 bg-linear-to-b from-background from-30% to-transparent">
+    <header className="space-y-2 w-full px-4 pt-4 sm:px-12">
       <div className="flex justify-between items-center text-muted-foreground text-sm">
         <div className="flex gap-4 sm:gap-10">
-          <div className="">STATUS ::</div>
-          <div className="sm:ml-12 text-white">ONLINE</div>
+          <span className="">STATUS ::</span>
+          <span className="sm:ml-12 px-3 rounded-xs border text-foreground font-mono">
+            ONLINE
+          </span>
         </div>
 
-        <div className="px-2">MALAYSIA :: [ GMT+8 ]</div>
+        <div className="px-2">
+          MALAYSIA ::
+          <span className="sm:ml-12 text-foreground font-mono">[ GMT+8 ]</span>
+        </div>
       </div>
 
       <div className="flex justify-between items-center">

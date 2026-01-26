@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "./_providers/theme-provider";
 
+import styles from "./layout.module.css";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -37,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${styles.gridBackground}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

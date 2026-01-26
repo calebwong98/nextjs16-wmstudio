@@ -1,0 +1,23 @@
+.gridBackground::before {
+  --size: 45px;
+  --line: color-mix(in hsl, canvasText, transparent 80%);
+  content: "";
+  height: 50vh;
+  width: 100vw;
+  position: fixed;
+  background:
+    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size))
+      calc(var(--size) * 0.36) 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 0%
+      calc(var(--size) * 0.32) / var(--size) var(--size);
+  mask: radial-gradient(
+    ellipse 125% 200% at 50% 100%,
+    transparent 20%,
+    white 80%
+  );
+  top: 0;
+  left: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: -1;
+}
