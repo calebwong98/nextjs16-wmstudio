@@ -18,9 +18,7 @@ export default async function Header() {
       <div className="flex justify-between items-center text-muted-foreground text-sm">
         <div className="flex gap-4 sm:gap-10">
           <span className="">STATUS ::</span>
-          <span className="sm:ml-12 px-3 rounded-xs border text-foreground font-mono">
-            ONLINE
-          </span>
+          <span className="sm:ml-14 text-foreground font-mono">[ ONLINE ]</span>
         </div>
 
         <div className="px-2">
