@@ -3,7 +3,7 @@
   --line: color-mix(in hsl, canvasText, transparent 80%);
   content: "";
   height: 50vh;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   background:
     linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size))
@@ -17,6 +17,7 @@
   );
   top: 0;
   left: 0;
+  right: 0;
   transform-style: flat;
   pointer-events: none;
   z-index: -1;

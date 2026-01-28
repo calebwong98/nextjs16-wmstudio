@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Link from "next/link";
 
 import Logo from "@/components/shared/logo";
 
@@ -7,6 +8,7 @@ import SignInButton from "./Header-signIn";
 import MainButton from "./Header-main";
 import ProfileButton from "./Header-profile";
 import { ThemeToggle } from "./Header-theme";
+import HeaderNav from "./Header-nav";
 
 export default async function Header() {
   const session = await auth.api.getSession({
@@ -41,6 +43,8 @@ export default async function Header() {
           <ThemeToggle />
         </div>
       </div>
+
+      <HeaderNav />
     </header>
   );
 }

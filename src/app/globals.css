@@ -128,3 +128,8 @@
     cursor: pointer;
   }
 }
+
+/* Prevent layout shift when scrollbar appears/disappears */
+.scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}

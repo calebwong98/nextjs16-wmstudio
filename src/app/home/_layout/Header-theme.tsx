@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Check } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -10,9 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const { theme: currentTheme, setTheme } = useTheme();
+  const isActive = (theme: string) => currentTheme === theme;
 
   return (
     <DropdownMenu>
@@ -23,15 +25,27 @@ export function ThemeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent sideOffset={8} align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+      <DropdownMenuContent className="space-y-1" sideOffset={8} align="end">
+        <DropdownMenuItem
+          className={cn("cursor-pointer", isActive("light") && "bg-accent")}
+          onClick={() => setTheme("light")}
+        >
           Light
+          {isActive("light") && <Check className="ml-auto size-4" />}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem
+          className={cn("cursor-pointer", isActive("dark") && "bg-accent")}
+          onClick={() => setTheme("dark")}
+        >
           Dark
+          {isActive("dark") && <Check className="ml-auto size-4" />}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem
+          className={cn("cursor-pointer", isActive("system") && "bg-accent")}
+          onClick={() => setTheme("system")}
+        >
           System
+          {isActive("system") && <Check className="ml-auto size-4" />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
