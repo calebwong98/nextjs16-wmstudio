@@ -12,6 +12,7 @@ export default async function HomeLayout({
     <div className="relative min-h-screen container mx-auto">
       <Header />
       <main className="h-full w-full relative">{children}</main>
+      <Footer />
     </div>
   );
 }
