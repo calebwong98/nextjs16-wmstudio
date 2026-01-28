@@ -1,11 +1,10 @@
-import Link from "next/link";
-
 /**
  * Contact Page
  *
  * Personal background, philosophy, and approach to work.
  * Humanizes the portfolio beyond just technical skills.
  */
+
 export default function MyContactPage() {
   return (
     <div className="px-4 sm:px-12">
@@ -109,9 +108,9 @@ export default function MyContactPage() {
         </div>
 
         {/* Sidebar */}
-        <aside className="lg:col-span-4">
+        <aside className="h-fit lg:col-span-4 sticky top-0 space-y-6 py-10">
           {/* Profile Image Placeholder */}
-          <div className="aspect-square rounded-2xl bg-muted/50 border border-dashed flex items-center justify-center mb-8">
+          <div className="aspect-square rounded-2xl bg-muted/50 border border-dashed flex items-center justify-center">
             <span className="text-sm text-muted-foreground">Photo</span>
           </div>
 
@@ -167,7 +166,7 @@ export default function MyContactPage() {
           </div>
 
           {/* Contact */}
-          <section className="pt-6">
+          <section className="">
             <h2 className="text-lg font-semibold mb-4">Contact</h2>
             <div className="space-y-3 text-sm">
               <a
@@ -192,17 +191,16 @@ export default function MyContactPage() {
                 linkedin.com/in/username
               </a>
             </div>
-          </section>
 
-          {/* Contact CTA */}
-          <div className="pt-6">
-            <a
-              href="mailto:hello@example.com"
-              className="w-full inline-flex items-center justify-center h-11 px-6 font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
-            >
-              Get in Touch
-            </a>
-          </div>
+            <div className="pt-6">
+              <a
+                href="mailto:hello@example.com"
+                className="w-full inline-flex items-center justify-center h-11 px-6 font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Get in Touch
+              </a>
+            </div>
+          </section>
         </aside>
       </div>
     </div>

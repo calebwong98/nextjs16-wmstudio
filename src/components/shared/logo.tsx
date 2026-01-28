@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 const logoVariants = cva("", {
   variants: {
     variant: {
-      default: "",
+      default: "w-40 sm:w-52",
       header: "w-40 sm:w-52",
     },
     size: {

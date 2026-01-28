@@ -13,23 +13,6 @@ export default function ComponentsPage() {
 
   return (
     <div className="px-4 sm:px-12">
-      {/* Tags Filter */}
-      <div className="mb-8">
-        <div className="flex flex-wrap gap-2">
-          <span className="text-sm text-muted-foreground mr-2 py-1">
-            Filter:
-          </span>
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-mono px-3 py-1 bg-muted rounded-full cursor-pointer hover:bg-muted/80 transition-colors"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* Component Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {componentRegistry.map((component, index) => (
@@ -42,16 +25,6 @@ export default function ComponentsPage() {
             index={index}
           />
         ))}
-      </div>
-
-      {/* Coming Soon Placeholder */}
-      <div className="mt-12 p-8 rounded-xl border border-dashed bg-muted/30 text-center">
-        <p className="text-muted-foreground mb-2">
-          More components coming soon
-        </p>
-        <p className="text-sm text-muted-foreground/70">
-          Toast notifications, modals, tooltips, and more
-        </p>
       </div>
     </div>
   );
@@ -115,27 +88,6 @@ function ComponentCard({
     </Link>
   );
 }
-
-/**
- * Chevron left icon for back navigation
- */
-function ChevronLeftIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      className={className}
-    >
-      <path
-        fillRule="evenodd"
-        d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
-
 /**
  * Arrow up-right icon for card hover state
  */

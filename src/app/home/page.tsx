@@ -1,6 +1,9 @@
+import HaloRing from "@/components/icons/halo-ring";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { Sparkles, SquareArrowUp } from "lucide-react";
 import Link from "next/link";
-import { componentRegistry } from "./components/_registry";
-import { Separator } from "@/components/ui/separator";
 
 /**
  * Landing Page
@@ -9,81 +12,82 @@ import { Separator } from "@/components/ui/separator";
  * Showcases the developer's skills with a clean, impactful hero
  * and clear navigation to key sections.
  */
+
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-[calc(100vh-120px)] px-4 sm:px-12">
-      {/* Featured Components Preview */}
-      <section>
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Component Showcase</h2>
-            <p className="text-muted-foreground">
-              Interactive UI components with live demos and code
-            </p>
-          </div>
-          <Link
-            href="/components"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hidden sm:flex items-center gap-2"
+    <div className="flex flex-col flex-1 px-6 sm:px-12">
+      <section className="h-full grid grid-rows-[1fr,auto] mt-auto ">
+        <div className="flex flex-col gap-4 sm:gap-5 items-center">
+          {/* PROJECT REPOSITORY */}
+          {/* <div className="grid grid-cols-5 gap-2 sm:gap-6">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <ProjectRepository active={false} key={i} />
+            ))}
+          </div> */}
+          {/* PAGE CTA */}
+          <div
+            className={cn(
+              "mt-8",
+              "rounded-lg bg-secondary w-11/12 max-w-2xl",
+              "border border-primary border-opacity-15",
+            )}
           >
-            View all
-            <ArrowIcon className="size-3" />
-          </Link>
-        </div>
-
-        {/* Component Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {componentRegistry.slice(0, 3).map((component) => (
-            <Link
-              key={component.slug}
-              href={`/components/${component.slug}`}
-              className="group block p-6 rounded-xl border bg-card hover:border-foreground/20 transition-colors"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="font-semibold group-hover:text-primary transition-colors">
-                  {component.title}
-                </h3>
-                <ArrowIcon className="size-4 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-              </div>
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                {component.description}
+            <div className="flex justify-between py-2">
+              <p className="pl-4 text-sm text-secondary-foreground">
+                10 plan generations left
               </p>
-              <div className="flex flex-wrap gap-2">
-                {component.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-mono px-2 py-1 bg-muted rounded-md"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="flex gap-2 items-center pr-4">
+                <p className="text-sm text-success">Upgrade Plan</p>
+                <SquareArrowUp size={16} className="text-success" />
               </div>
-            </Link>
-          ))}
+            </div>
+
+            <div className="border border-primary rounded-md focus-within:ring-success focus-within:ring-offset-2 bg-background">
+              <Textarea
+                placeholder="Describe your needs and we ll give you a plan !"
+                className="resize-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+              />
+
+              <div className="flex justify-between p-4">
+                <Button
+                  className="w-fit p-3"
+                  variant="outline"
+                  size="icon"
+                  disabled
+                >
+                  <Sparkles size={16} />
+                </Button>
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "px-8 text-sm",
+                  )}
+                  href="/"
+                >
+                  Generate Plan
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-
-      <Separator className="my-8" />
 
       {/* Quick Links */}
-      <section>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <section className="mt-auto">
+        <div className="grid grid-cols-1 gap-4">
+          <QuickLink
+            href="/components"
+            title="Component Showcase"
+            description="Interactive UI components with live demos and code"
+          />
           <QuickLink
             href="/projects"
-            title="Projects"
+            title="Project Showcase"
             description="Real-world applications and case studies"
-          />
-          <QuickLink
-            href="/resume"
-            title="Resume"
-            description="Experience and qualifications"
-          />
-          <QuickLink
-            href="/about"
-            title="About"
-            description="Background and philosophy"
           />
         </div>
       </section>
+      <HaloRing />
     </div>
   );
 }
@@ -144,9 +148,7 @@ function QuickLink({
       className="group flex items-center justify-between p-6 rounded-xl border bg-card hover:border-foreground/20 transition-colors"
     >
       <div>
-        <h3 className="font-semibold group-hover:text-primary transition-colors">
-          {title}
-        </h3>
+        <h3 className="font-semibold">{title}</h3>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
       <ArrowIcon className="size-5 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />

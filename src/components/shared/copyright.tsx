@@ -1,5 +1,7 @@
-export default function Copyright() {
+export default function Copyright({ className }: { className?: string }) {
   return (
-    <p>&copy; {new Date().getFullYear()} WMStudio. All Rights reserved.</p>
+    <p className={`text-muted-foreground text-sm ${className ?? ""}`}>
+      &copy; {new Date().getFullYear()} WMStudio. All Rights reserved.
+    </p>
   );
 }
