@@ -12,7 +12,7 @@ export default function ComponentsPage() {
   const tags = getAllTags();
 
   return (
-    <div className="px-4 sm:px-12 py-12">
+    <div className="px-4 sm:px-12">
       {/* Tags Filter */}
       <div className="mb-8">
         <div className="flex flex-wrap gap-2">

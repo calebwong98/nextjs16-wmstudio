@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 
 import styles from "./logo.module.css";
+import { usePathname } from "next/navigation";
 
 const logoVariants = cva("", {
   variants: {
@@ -29,10 +32,13 @@ interface LogoProps
     VariantProps<typeof logoVariants> {}
 
 export default function Logo({ variant, size, ...props }: LogoProps) {
+  const pathname = usePathname();
+  const isActive = pathname === "/";
+
   return (
     <Link
       href="/"
-      className={cn(logoVariants({ variant, size }), styles.group)}
+      className={cn(logoVariants({ variant, size }), styles.group, "py-1.5")}
       {...props}
     >
       <svg viewBox="0 0 214 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +78,10 @@ export default function Logo({ variant, size, ...props }: LogoProps) {
           cx="183"
           cy="4"
           r="3.5"
-          className={cn("fill-green-500 stroke-green-500", styles.circleBreath)}
+          className={cn(
+            isActive ? "fill-success stroke-success" : " stroke-success",
+            styles.circleBreath,
+          )}
         />
       </svg>
     </Link>

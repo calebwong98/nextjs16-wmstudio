@@ -1,14 +1,19 @@
+"use client";
+
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function MainButton() {
+  const pathname = usePathname();
+  const isActive = pathname === "/contact";
   return (
-    <Link
-      className={cn(buttonVariants({ variant: "default" }), "px-8 text-sm")}
-      href="/projects/create"
+    <Button
+      className={cn("px-8 text-sm", isActive && "ring-2 ring-success")}
+      asChild
     >
-      Generate Plan
-    </Link>
+      <Link href="/contact">Open to Work</Link>
+    </Button>
   );
 }

@@ -8,7 +8,7 @@ import Link from "next/link";
  */
 export default function ProjectsPage() {
   return (
-    <div className="px-4 sm:px-12 py-12">
+    <div className="px-4 sm:px-12">
       {/* Project Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <ProjectCard
