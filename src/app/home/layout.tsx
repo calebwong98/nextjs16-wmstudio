@@ -11,7 +11,7 @@ export default async function HomeLayout({
   return (
     <div className="flex flex-col relative min-h-screen container mx-auto">
       <Header />
-      <main className="h-full w-full my-auto flex flex-col flex-1 relative">
+      <main className="h-full w-full my-auto flex flex-col flex-1 relative px-4 sm:px-12">
         {children}
       </main>
       <Footer />

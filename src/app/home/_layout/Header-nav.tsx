@@ -18,7 +18,7 @@ export default function HeaderNav() {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
   return (
-    <nav className="px-1 w-full max-w-lg flex flex-col sm:flex-row gap-8 sm:gap-2 items-start justify-between mx-auto py-4 sm:py-8 mb-8 uppercase">
+    <nav className="px-1 w-full max-w-lg flex flex-col sm:flex-row gap-8 sm:gap-2 items-start justify-between mx-auto py-4 sm:py-8 my-8 uppercase">
       {navLinks.map((link) => (
         <Link
           key={link.href}
@@ -54,5 +54,30 @@ export default function HeaderNav() {
         </Link>
       ))}
     </nav>
+  );
+}
+
+export function HeaderNavRoot() {
+  const pathname = usePathname();
+  const isActive = pathname === "/";
+  return (
+    <p
+      className={cn(
+        "text-sm text-muted-foreground font-mono tracking-wider",
+        isActive ? "font-bold text-foreground" : "font-medium",
+      )}
+    >
+      <span
+        className={cn("font-medium opacity-0 pr-1", isActive && "opacity-100")}
+      >
+        [
+      </span>
+      FRONTEND DEVELOPER
+      <span
+        className={cn("font-medium opacity-0 pl-1", isActive && "opacity-100")}
+      >
+        ]
+      </span>
+    </p>
   );
 }

@@ -11,7 +11,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { Google } from "@/components/icons";
+import { GoogleIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 
 interface SignInCardProps {
@@ -49,7 +49,7 @@ export function SignInCard({ callbackUrl }: SignInCardProps) {
             onClick={handleGoogleSignIn}
             disabled={isLoading}
           >
-            <Google className="size-5" />
+            <GoogleIcon className="size-5" />
             <span>{isLoading ? "Signing in..." : "Sign in with Google"}</span>
           </Button>
         </div>

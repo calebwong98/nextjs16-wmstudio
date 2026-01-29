@@ -1,29 +1,25 @@
-import Link from "next/link";
-
 /**
  * Projects Page
  *
  * Showcases real-world projects and case studies.
  * Currently a placeholder with structure for future content.
  */
+
 export default function ProjectsPage() {
   return (
-    <div className="px-4 sm:px-12">
-      {/* Project Grid */}
-      <div className="grid grid-cols-1 gap-8">
-        <ProjectCard
-          title="E-Commerce Platform"
-          description="Full-stack marketplace with real-time inventory, payment processing, and admin dashboard."
-          tags={["Next.js", "PostgreSQL", "Stripe", "TypeScript"]}
-          status="Featured"
-        />
-        <ProjectCard
-          title="Design System"
-          description="Comprehensive component library with theming, accessibility, and documentation."
-          tags={["React", "Storybook", "Tailwind", "Radix UI"]}
-          status="Open Source"
-        />
-      </div>
+    <div className="grid grid-cols-1 gap-4">
+      {/* <ProjectCard
+        title="E-Commerce Platform"
+        description="Full-stack marketplace with real-time inventory, payment processing, and admin dashboard."
+        tags={["Next.js", "PostgreSQL", "Stripe", "TypeScript"]}
+        status="Featured"
+      />
+      <ProjectCard
+        title="Design System"
+        description="Comprehensive component library with theming, accessibility, and documentation."
+        tags={["React", "Storybook", "Tailwind", "Radix UI"]}
+        status="Open Source"
+      /> */}
     </div>
   );
 }

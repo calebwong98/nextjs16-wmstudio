@@ -1,118 +1,116 @@
-import Link from "next/link";
-
 /**
  * Resume Page
  *
  * Professional experience and qualifications.
  * Clean, scannable layout optimized for recruiters.
  */
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
 export default function ResumePage() {
   return (
-    <div className="px-4 sm:px-12">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-12">
-          {/* Experience */}
-          <section>
-            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <span className="w-1 h-6 bg-primary rounded-full" />
-              Experience
-            </h2>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      {/* Main Content */}
+      <div className="lg:col-span-2 space-y-12">
+        {/* Experience */}
+        {/* <section>
+          <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+            <span className="w-1 h-6 bg-primary rounded-full" />
+            Experience
+          </h2>
 
-            <div className="space-y-8">
-              <ExperienceItem
-                title="Senior Frontend Engineer"
-                company="Tech Company"
-                period="2023 - Present"
-                description="Led frontend architecture for customer-facing products. Built design system used across 12 teams. Improved Core Web Vitals by 40%."
-                highlights={[
-                  "Architected micro-frontend system serving 2M+ users",
-                  "Mentored team of 5 junior engineers",
-                  "Reduced bundle size by 60% through code splitting",
-                ]}
-              />
+          <div className="space-y-8">
+            <ExperienceItem
+              title="Senior Frontend Engineer"
+              company="Tech Company"
+              period="2023 - Present"
+              description="Led frontend architecture for customer-facing products. Built design system used across 12 teams. Improved Core Web Vitals by 40%."
+              highlights={[
+                "Architected micro-frontend system serving 2M+ users",
+                "Mentored team of 5 junior engineers",
+                "Reduced bundle size by 60% through code splitting",
+              ]}
+            />
 
-              <ExperienceItem
-                title="Frontend Engineer"
-                company="Startup Inc"
-                period="2021 - 2023"
-                description="Full-stack development with focus on interactive data visualization and real-time features."
-                highlights={[
-                  "Built real-time collaboration features with WebSocket",
-                  "Created custom charting library with D3.js",
-                  "Implemented CI/CD pipeline reducing deploy time by 70%",
-                ]}
-              />
+            <ExperienceItem
+              title="Frontend Engineer"
+              company="Startup Inc"
+              period="2021 - 2023"
+              description="Full-stack development with focus on interactive data visualization and real-time features."
+              highlights={[
+                "Built real-time collaboration features with WebSocket",
+                "Created custom charting library with D3.js",
+                "Implemented CI/CD pipeline reducing deploy time by 70%",
+              ]}
+            />
 
-              <ExperienceItem
-                title="UI/UX Developer"
-                company="Agency Co"
-                period="2019 - 2021"
-                description="Designed and developed websites for clients across industries including fintech, healthcare, and e-commerce."
-                highlights={[
-                  "Delivered 20+ client projects on time and budget",
-                  "Established component library and design system",
-                  "Improved average client site performance scores by 35%",
-                ]}
-              />
-            </div>
-          </section>
+            <ExperienceItem
+              title="UI/UX Developer"
+              company="Agency Co"
+              period="2019 - 2021"
+              description="Designed and developed websites for clients across industries including fintech, healthcare, and e-commerce."
+              highlights={[
+                "Delivered 20+ client projects on time and budget",
+                "Established component library and design system",
+                "Improved average client site performance scores by 35%",
+              ]}
+            />
+          </div>
+        </section> */}
 
-          {/* Education */}
-          <section>
-            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <span className="w-1 h-6 bg-primary rounded-full" />
-              Education
-            </h2>
+        {/* Education */}
+        {/* <section>
+          <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+            <span className="w-1 h-6 bg-primary rounded-full" />
+            Education
+          </h2>
 
-            <div className="p-6 rounded-xl border bg-card">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-semibold">
-                    Bachelor of Computer Science
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    University Name
-                  </p>
-                </div>
-                <span className="text-sm text-muted-foreground">
-                  2015 - 2019
-                </span>
+          <div className="p-6 rounded-xl border bg-card">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="font-semibold">Bachelor of Computer Science</h3>
+                <p className="text-sm text-muted-foreground">University Name</p>
               </div>
+              <span className="text-sm text-muted-foreground">2015 - 2019</span>
             </div>
-          </section>
-        </div>
+          </div>
+        </section> */}
+      </div>
 
-        {/* Sidebar */}
-        <div className="space-y-8">
-          {/* Skills */}
-          <section>
-            <h2 className="text-lg font-semibold mb-4">Technical Skills</h2>
-            <div className="space-y-4">
-              <SkillCategory
-                title="Languages"
-                skills={["TypeScript", "JavaScript", "HTML/CSS", "Python"]}
-              />
-              <SkillCategory
-                title="Frameworks"
-                skills={["React", "Next.js", "Node.js", "Tailwind CSS"]}
-              />
-              <SkillCategory
-                title="Tools"
-                skills={["Git", "Figma", "PostgreSQL", "Docker"]}
-              />
-              <SkillCategory
-                title="Concepts"
-                skills={[
-                  "Design Systems",
-                  "Accessibility",
-                  "Performance",
-                  "Animation",
-                ]}
-              />
-            </div>
-          </section>
-        </div>
+      {/* Sidebar */}
+      <div className="space-y-8">
+        {/* Skills */}
+        <section>
+          <h2 className="text-lg font-semibold mb-4">Technical Skills</h2>
+          <div className="space-y-4">
+            <SkillCategory
+              title="Languages"
+              skills={["TypeScript", "JavaScript", "HTML/CSS", "Python"]}
+            />
+            <SkillCategory
+              title="Frameworks"
+              skills={["React", "Next.js", "Node.js", "Tailwind CSS"]}
+            />
+            <SkillCategory
+              title="Tools"
+              skills={["Git", "Figma", "PostgreSQL", "Docker"]}
+            />
+            <SkillCategory
+              title="Concepts"
+              skills={[
+                "Design Systems",
+                "Accessibility",
+                "Performance",
+                "Animation",
+              ]}
+            />
+          </div>
+        </section>
+
+        <Button variant={"primary"} className="w-full" asChild>
+          <Link href="/contact">Get in Touch</Link>
+        </Button>
       </div>
     </div>
   );

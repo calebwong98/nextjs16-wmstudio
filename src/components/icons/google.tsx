@@ -1,4 +1,4 @@
-export function Google(props: React.SVGProps<SVGSVGElement>) {
+export function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} aria-hidden="true" viewBox="0 0 48 48">
       <path
