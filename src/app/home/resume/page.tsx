@@ -8,11 +8,17 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import { HeroSection } from "../_components/hero-section";
+import { cn } from "@/lib/utils";
+import { ArrowRight, Mail } from "lucide-react";
+
 export default function ResumePage() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
       {/* Main Content */}
       <div className="lg:col-span-2 space-y-12">
+        <HeroSection />
+
         {/* Experience */}
         {/* <section>
           <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
@@ -108,9 +114,41 @@ export default function ResumePage() {
           </div>
         </section>
 
-        <Button variant={"primary"} className="w-full" asChild>
-          <Link href="/contact">Get in Touch</Link>
-        </Button>
+        <Link
+          href="/contact"
+          className={cn(
+            "group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
+            "hover:shadow-lg hover:-translate-y-1",
+
+            "bg-foreground text-background border-foreground",
+          )}
+        >
+          {/* Icon */}
+          <div
+            className={cn(
+              "size-10 rounded-lg flex items-center justify-center",
+              "bg-background/10",
+            )}
+          >
+            <Mail className="size-5" />
+          </div>
+
+          {/* Content */}
+          <div className="space-y-1">
+            <h3 className="font-semibold text-lg flex items-center gap-2">
+              Let&apos;s Talk!
+              <ArrowRight
+                className={cn(
+                  "size-4 opacity-0 -translate-x-2 transition-all",
+                  "group-hover:opacity-100 group-hover:translate-x-0",
+                )}
+              />
+            </h3>
+            <p className={cn("text-sm", "text-background/70")}>
+              Connect with me through socials
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );

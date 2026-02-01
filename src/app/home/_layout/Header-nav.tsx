@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
  * Navigation links for the portfolio
  */
 const navLinks = [
-  { href: "/components", label: "Components" },
+  { href: "/", label: "Homes" },
   { href: "/projects", label: "Projects" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
@@ -58,26 +58,30 @@ export default function HeaderNav() {
 }
 
 export function HeaderNavRoot() {
-  const pathname = usePathname();
-  const isActive = pathname === "/";
+  // const pathname = usePathname();
+  // const isActive = pathname === "/";
   return (
     <p
       className={cn(
         "text-sm text-muted-foreground font-mono tracking-wider",
-        isActive ? "font-bold text-foreground" : "font-medium",
+        // isActive ? "font-bold text-foreground" : "font-medium",
       )}
     >
-      <span
-        className={cn("font-medium opacity-0 pr-1", isActive && "opacity-100")}
-      >
-        [
-      </span>
+      {/* 
+        <span
+          className={cn("font-medium opacity-0 pr-1", isActive && "opacity-100")}
+        >
+          [
+        </span> 
+        */}
       FRONTEND DEVELOPER
-      <span
-        className={cn("font-medium opacity-0 pl-1", isActive && "opacity-100")}
-      >
-        ]
-      </span>
+      {/*
+        <span
+          className={cn("font-medium opacity-0 pl-1", isActive && "opacity-100")}
+        >
+          ]
+        </span> 
+        */}
     </p>
   );
 }

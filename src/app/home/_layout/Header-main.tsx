@@ -11,8 +11,8 @@ export default function MainButton({ className }: { className?: string }) {
   return (
     <Button
       className={cn(
-        "px-8 text-sm",
-        isActive && "ring-2 ring-success",
+        "px-8 text-sm ring-2 ring-success/30",
+        isActive && "ring-success",
         className,
       )}
       asChild

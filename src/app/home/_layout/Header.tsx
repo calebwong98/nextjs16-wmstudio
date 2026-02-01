@@ -16,21 +16,23 @@ export default async function Header() {
 
   return (
     <header className="space-y-2 w-full px-4 pt-4 sm:px-12">
-      <div className="flex justify-between items-center text-muted-foreground text-sm">
-        <div className="flex gap-4 sm:gap-10">
-          <span className="">STATUS ::</span>
-          <span className="sm:ml-14 font-mono">
-            [ <span className="">ONLINE</span> ]
-          </span>
-        </div>
+      {/* 
+        <div className="flex justify-between items-center text-muted-foreground text-sm">
+          <div className="flex gap-4 sm:gap-10">
+            <span className="">STATUS ::</span>
+            <span className="sm:ml-14 font-mono">
+              [ <span className="">ONLINE</span> ]
+            </span>
+          </div>
 
-        <div className="px-2 hidden md:flex">
-          MALAYSIA ::
-          <span className="sm:ml-12 font-mono">
-            [ <span className="">GMT+8</span> ]
-          </span>
-        </div>
-      </div>
+          <div className="px-2 hidden md:flex">
+            MALAYSIA ::
+            <span className="sm:ml-12 font-mono">
+              [ <span className="">GMT+8</span> ]
+            </span>
+          </div>
+        </div> 
+        */}
 
       <div className="flex justify-between items-start sm:items-center">
         <div className="flex flex-col gap-2">

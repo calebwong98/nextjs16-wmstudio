@@ -6,7 +6,7 @@ interface ProjectRepositoryProps {
   className?: string;
 }
 
-export default function ProjectRepository({
+export function ProjectRepository({
   size = 3,
   active = true,
   className = "",
@@ -16,7 +16,7 @@ export default function ProjectRepository({
       className={cn(
         className,
         "rounded-lg border-2 flex flex-col transition-all cursor-pointer",
-        "border-border hover:bg-border dark:border-foreground dark:hover:bg-foreground",
+        "border-foreground hover:bg-border dark:border-foreground dark:hover:bg-foreground",
       )}
       style={{ width: `${size}rem`, height: `${size}rem` }}
     >

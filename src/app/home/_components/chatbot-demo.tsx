@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { Sparkles, SquareArrowUp, Send, Loader2, KeyRound } from "lucide-react";
+import { Sparkles, Send, Loader2, KeyRound, BotIcon } from "lucide-react";
 import Link from "next/link";
 import type { ChatMessage } from "./chatbot-demo.types";
 
@@ -116,17 +116,9 @@ export function ChatbotDemo({ maxUsage = 5 }: ChatbotDemoProps) {
         ) : (
           <>
             <p className="text-sm text-secondary-foreground">
-              Enter your demo key to start
+              Cheapest Chatbot
             </p>
-            <div className="flex gap-2 items-center">
-              <Link
-                href="/contact"
-                className="text-sm text-success hover:underline"
-              >
-                Request Key
-              </Link>
-              <SquareArrowUp size={16} className="text-success" />
-            </div>
+            <BotIcon size={20} className="text-success" />
           </>
         )}
       </div>
@@ -136,7 +128,7 @@ export function ChatbotDemo({ maxUsage = 5 }: ChatbotDemoProps) {
         {!isKeyValidated ? (
           /* Key input state */
           <div className="p-4 space-y-4">
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <div className="relative flex-1">
                 <KeyRound
                   size={16}
@@ -152,20 +144,20 @@ export function ChatbotDemo({ maxUsage = 5 }: ChatbotDemoProps) {
                 />
               </div>
               <Button
+                className="px-10"
                 onClick={handleValidateKey}
                 disabled={isLoading || !apiKey}
               >
                 {isLoading ? (
                   <Loader2 size={16} className="animate-spin" />
                 ) : (
-                  "Validate"
+                  "Ask"
                 )}
               </Button>
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
-            <p className="text-xs text-muted-foreground">
-              This chatbot demonstrates my AI integration skills. Each key
-              allows {maxUsage} messages.
+            <p className="text-center sm:text-left text-xs text-muted-foreground/80">
+              This chatbot demonstrates my AI integration skills.
             </p>
           </div>
         ) : (
