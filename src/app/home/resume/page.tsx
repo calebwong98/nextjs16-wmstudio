@@ -5,208 +5,266 @@
  * Clean, scannable layout optimized for recruiters.
  */
 
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import { HeroSection } from "../_components/hero-section";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Mail } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function ResumePage() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1">
       {/* Main Content */}
-      <div className="lg:col-span-2 space-y-12">
-        <HeroSection />
+      <div className="lg:col-span-2">
+        <section>
+          <ResumeHeading title="Frontend Developer" />
+          <ResumeContent>
+            <h2 className="text-xl font-bold uppercase pt-4 ">Wong Jia Le</h2>
+            <div className="flex items-center gap-2 py-4">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-success" />
+              </span>
+              <span className="text-sm font-medium text-muted-foreground">
+                Applying for Frontend Roles
+              </span>
+            </div>
+            <p className="text-md text-muted-foreground max-w-2xl">
+              I build performant, accessible web applications with modern
+              technologies. Passionate about clean code, great UX, and turning
+              complex problems into elegant solutions.
+            </p>
+          </ResumeContent>
+        </section>
 
         {/* Experience */}
-        {/* <section>
-          <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-            <span className="w-1 h-6 bg-primary rounded-full" />
-            Experience
-          </h2>
+        <section>
+          <ResumeHeading title="Experience" />
 
-          <div className="space-y-8">
-            <ExperienceItem
-              title="Senior Frontend Engineer"
-              company="Tech Company"
-              period="2023 - Present"
-              description="Led frontend architecture for customer-facing products. Built design system used across 12 teams. Improved Core Web Vitals by 40%."
-              highlights={[
-                "Architected micro-frontend system serving 2M+ users",
-                "Mentored team of 5 junior engineers",
-                "Reduced bundle size by 60% through code splitting",
+          <ResumeContent>
+            <ResumeItem
+              title="Klinikkhome.com"
+              subtitle="Full-Stack Developer"
+              period="JUN 2025 - DEC 2025"
+              tags={[
+                { title: "React", theme: "blue" },
+                { title: "Next.js", theme: "blue" },
+                { title: "Node.js", theme: "green" },
+                { title: "Tailwind CSS", theme: "teal" },
               ]}
+              features={[
+                "Designed and implemented a custom admin membership management system, enabling staff to manage users, roles, and access levels.",
+                "Utilised  reusable design patterns using ShadCN and Tailwind utilities.",
+                "Built a points-based membership system with configurable rules for earning, tracking, and redeeming points.",
+                "Designed and optimized database schemas and queries using Drizzle ORM with PostgreSQL.",
+              ]}
+              isListItem
             />
 
-            <ExperienceItem
-              title="Frontend Engineer"
-              company="Startup Inc"
-              period="2021 - 2023"
-              description="Full-stack development with focus on interactive data visualization and real-time features."
-              highlights={[
-                "Built real-time collaboration features with WebSocket",
-                "Created custom charting library with D3.js",
-                "Implemented CI/CD pipeline reducing deploy time by 70%",
+            <ResumeItem
+              title="CalebWONG.studio"
+              subtitle="Full-Stack Developer (self-employed)"
+              period="JUN 2023 - PRESENT"
+              tags={[
+                { title: "React", theme: "blue" },
+                { title: "Next.js", theme: "blue" },
+                { title: "Node.js", theme: "green" },
+                { title: "Tailwind CSS", theme: "teal" },
               ]}
-            />
-
-            <ExperienceItem
-              title="UI/UX Developer"
-              company="Agency Co"
-              period="2019 - 2021"
-              description="Designed and developed websites for clients across industries including fintech, healthcare, and e-commerce."
-              highlights={[
-                "Delivered 20+ client projects on time and budget",
-                "Established component library and design system",
-                "Improved average client site performance scores by 35%",
+              features={[
+                "Implemented secure authentication with Better Auth and integrated Stripe payment workflows.",
+                "Created advanced UI animations using GSAP with sequenced and scroll-driven interactions.",
+                "Designed scalable, maintainable component architectures and production-ready deployments.",
               ]}
+              isListItem
             />
-          </div>
-        </section> */}
+          </ResumeContent>
+        </section>
 
         {/* Education */}
-        {/* <section>
-          <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-            <span className="w-1 h-6 bg-primary rounded-full" />
-            Education
-          </h2>
+        <section>
+          <ResumeHeading title="Education" />
 
-          <div className="p-6 rounded-xl border bg-card">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="font-semibold">Bachelor of Computer Science</h3>
-                <p className="text-sm text-muted-foreground">University Name</p>
-              </div>
-              <span className="text-sm text-muted-foreground">2015 - 2019</span>
-            </div>
-          </div>
-        </section> */}
+          <ResumeContent>
+            <ResumeItem
+              title="Beijing University of Chinese Medicine"
+              subtitle="Bachelor of Chinese Medicine"
+              period="2016 - 2021"
+              isListItem
+            />
+          </ResumeContent>
+        </section>
       </div>
 
       {/* Sidebar */}
-      <div className="space-y-8">
+      <aside className="flex flex-col justify-between gap-4">
         {/* Skills */}
         <section>
-          <h2 className="text-lg font-semibold mb-4">Technical Skills</h2>
-          <div className="space-y-4">
-            <SkillCategory
+          <ResumeHeading title="Technical Skills" />
+
+          <ResumeContent>
+            <ResumeItem
               title="Languages"
-              skills={["TypeScript", "JavaScript", "HTML/CSS", "Python"]}
-            />
-            <SkillCategory
-              title="Frameworks"
-              skills={["React", "Next.js", "Node.js", "Tailwind CSS"]}
-            />
-            <SkillCategory
-              title="Tools"
-              skills={["Git", "Figma", "PostgreSQL", "Docker"]}
-            />
-            <SkillCategory
-              title="Concepts"
-              skills={[
-                "Design Systems",
-                "Accessibility",
-                "Performance",
-                "Animation",
+              tags={[
+                { title: "TypeScript", theme: "blue" },
+                { title: "JavaScript", theme: "yellow" },
+                { title: "HTML/CSS", theme: "orange" },
+                { title: "Python", theme: "green" },
               ]}
             />
-          </div>
+            <ResumeItem
+              title="Frameworks"
+              tags={[
+                { title: "React", theme: "blue" },
+                { title: "Next.js", theme: "blue" },
+                { title: "Node.js", theme: "green" },
+                { title: "Tailwind CSS", theme: "teal" },
+              ]}
+            />
+            <ResumeItem
+              title="Tools"
+              tags={[
+                { title: "Git", theme: "orange" },
+                { title: "Figma", theme: "pink" },
+                { title: "PostgreSQL", theme: "blue" },
+                { title: "Docker", theme: "cyan" },
+              ]}
+            />
+          </ResumeContent>
         </section>
+      </aside>
 
-        <Link
-          href="/contact"
+      <Link
+        href="/contact"
+        className={cn(
+          "lg:col-span-3 group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
+          "hover:shadow-lg hover:-translate-y-1",
+
+          "bg-foreground text-background border-foreground",
+        )}
+      >
+        {/* Icon */}
+        <div
           className={cn(
-            "group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
-            "hover:shadow-lg hover:-translate-y-1",
-
-            "bg-foreground text-background border-foreground",
+            "size-10 rounded-lg flex items-center justify-center",
+            "bg-background/10",
           )}
         >
-          {/* Icon */}
-          <div
-            className={cn(
-              "size-10 rounded-lg flex items-center justify-center",
-              "bg-background/10",
-            )}
-          >
-            <Mail className="size-5" />
-          </div>
+          <Mail className="size-5" />
+        </div>
 
-          {/* Content */}
-          <div className="space-y-1">
-            <h3 className="font-semibold text-lg flex items-center gap-2">
-              Let&apos;s Talk!
-              <ArrowRight
-                className={cn(
-                  "size-4 opacity-0 -translate-x-2 transition-all",
-                  "group-hover:opacity-100 group-hover:translate-x-0",
-                )}
-              />
-            </h3>
-            <p className={cn("text-sm", "text-background/70")}>
-              Connect with me through socials
-            </p>
-          </div>
-        </Link>
-      </div>
+        {/* Content */}
+        <div className="space-y-1">
+          <h3 className="font-semibold text-lg flex items-center gap-2">
+            Let&apos;s Talk!
+            <ArrowRight
+              className={cn(
+                "size-4 opacity-0 -translate-x-2 transition-all",
+                "group-hover:opacity-100 group-hover:translate-x-0",
+              )}
+            />
+          </h3>
+          <p className={cn("text-sm", "text-background/70")}>
+            Connect with me through socials
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }
 
-function ExperienceItem({
+function ResumeHeading({ title }: { title: string }) {
+  return (
+    <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase">
+      <span>[</span>
+      <span>{title}</span>
+      <span>]</span>
+      <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
+    </h2>
+  );
+}
+
+function ResumeContent({ children }: { children: React.ReactNode }) {
+  return <div className="pl-4 pr-2 pb-16">{children}</div>;
+}
+
+function ResumeItem({
   title,
-  company,
+  subtitle,
   period,
   description,
-  highlights,
+  tags,
+  features,
+
+  isListItem = false,
 }: {
   title: string;
-  company: string;
-  period: string;
-  description: string;
-  highlights: string[];
+  subtitle?: string;
+  period?: string;
+  description?: string;
+  tags?: {
+    title: string;
+    theme: string;
+  }[];
+  features?: string[];
+
+  isListItem?: boolean;
 }) {
   return (
-    <div className="relative pl-6 border-l-2 border-muted">
-      <div className="absolute -left-2.25 top-0 size-4 rounded-full bg-background border-2 border-muted" />
-      <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
+    <div
+      className={cn(
+        "relative py-4",
+        isListItem && "pl-6 border-l border-muted-foreground/40",
+      )}
+    >
+      {isListItem && (
+        <div className="absolute -left-2.25 top-7 size-4 rounded-full bg-background border border-muted-foreground/40" />
+      )}
+      <div className="flex items-start justify-between flex-wrap gap-2 py-2">
         <div>
           <h3 className="font-semibold">{title}</h3>
-          <p className="text-sm text-muted-foreground">{company}</p>
+          <p className="text-sm text-muted-foreground">{subtitle}</p>
         </div>
         <span className="text-sm text-muted-foreground">{period}</span>
       </div>
-      <p className="text-sm text-muted-foreground mb-3">{description}</p>
-      <ul className="space-y-1">
-        {highlights.map((highlight, index) => (
-          <li
-            key={index}
-            className="text-sm text-muted-foreground flex items-start gap-2"
-          >
-            <span className="text-primary mt-1.5">•</span>
-            {highlight}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function SkillCategory({ title, skills }: { title: string; skills: string[] }) {
-  return (
-    <div>
-      <h3 className="text-sm font-medium mb-2">{title}</h3>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill) => (
-          <span
-            key={skill}
-            className="text-xs font-mono px-2 py-1 bg-muted rounded-md"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
+      {description && (
+        <p className="text-sm text-muted-foreground mb-3">{description}</p>
+      )}
+      {tags && (
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <Badge
+              key={tag.title}
+              className={cn(
+                "rounded-sm py-1.5",
+                tag.theme === "blue" && "bg-blue-500",
+                tag.theme === "green" && "bg-green-500",
+                tag.theme === "teal" && "bg-teal-500",
+                tag.theme === "yellow" && "bg-yellow-500",
+                tag.theme === "orange" && "bg-orange-500",
+                tag.theme === "pink" && "bg-pink-500",
+                tag.theme === "cyan" && "bg-cyan-500",
+                "text-white",
+              )}
+            >
+              {tag.title}
+            </Badge>
+          ))}
+        </div>
+      )}
+      {features && (
+        <ul className="space-y-4 py-4">
+          {features.map((feature, index) => (
+            <li
+              key={index}
+              className="text-sm text-muted-foreground flex items-start gap-2"
+            >
+              <div className="text-muted-foreground">+</div>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

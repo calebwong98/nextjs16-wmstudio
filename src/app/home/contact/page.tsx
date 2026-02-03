@@ -105,7 +105,7 @@ export default function MyContactPage() {
       </div>
 
       {/* Sidebar */}
-      <aside className="h-fit lg:col-span-4 sticky top-0 space-y-6 py-10">
+      <aside className="h-fit lg:col-span-4 space-y-6">
         {/* Profile Image Placeholder */}
         <div className="aspect-square rounded-2xl bg-muted/50 border border-dashed flex items-center justify-center">
           <span className="text-sm text-muted-foreground">Photo</span>

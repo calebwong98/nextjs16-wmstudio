@@ -48,7 +48,7 @@ export default function HeaderNav() {
           <div
             className={cn(
               "bg-muted-foreground/10 h-px mx-2 my-auto w-full sm:hidden",
-              isActive(link.href) && "bg-muted-foreground",
+              isActive(link.href) && "bg-primary",
             )}
           />
         </Link>

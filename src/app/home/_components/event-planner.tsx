@@ -220,12 +220,6 @@ export function EventPlanner() {
 
   const [tasks, setTasks] = useState<ProjectTask[]>(PLACEHOLDER_TASKS);
 
-  const nowLabel = useMemo(() => {
-    const hh = String(today.getHours()).padStart(2, "0");
-    const mm = String(today.getMinutes()).padStart(2, "0");
-    return `${hh}:${mm}`;
-  }, [today]);
-
   const daysInMonth = getDaysInMonth(currentYear, currentMonth);
   const firstDay = getFirstDayOfMonth(currentYear, currentMonth);
 
@@ -312,9 +306,8 @@ export function EventPlanner() {
   return (
     <section>
       <Card className="overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm p-0 grid lg:grid-cols-[380px_1fr] min-h-[60vh]">
-        {/* Left: Project list ("description" area) */}
         {/* Project Lists */}
-        <CardContent className="space-y-4 px-4 border-b lg:border-b-0 lg:border-r border-border/50 bg-muted/30 py-4">
+        <CardContent className="flex flex-col gap-4 px-4 border-b lg:border-b-0 lg:border-r border-border/50 bg-muted/30 py-4">
           <CardTitle className="uppercase">[ Building Apps ]</CardTitle>
           <div className="space-y-2">
             {PLACEHOLDER_PROJECTS.map((project) => {
@@ -351,9 +344,111 @@ export function EventPlanner() {
               );
             })}
           </div>
-          <Separator />
+        </CardContent>
+
+        {/* Right: Calendar + daily kanban */}
+        <div className="grid 2xl:grid-cols-[1fr_420px] gap-6 p-4">
+          {/* Calendar */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="font-semibold">
+                {MONTHS[currentMonth]} {currentYear}
+              </div>
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="size-8"
+                  onClick={goToPrevMonth}
+                >
+                  <ChevronLeft className="size-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="size-8"
+                  onClick={goToNextMonth}
+                >
+                  <ChevronRight className="size-4" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-7 gap-1">
+              {DAYS.map((day) => (
+                <div
+                  key={day}
+                  className="text-center text-xs font-medium text-muted-foreground py-2"
+                >
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-7 gap-1">
+              {Array.from({ length: firstDay }).map((_, index) => (
+                <div key={`empty-${index}`} className="aspect-square" />
+              ))}
+
+              {Array.from({ length: daysInMonth }).map((_, index) => {
+                const day = index + 1;
+                const dateIso = toIsoDate(
+                  new Date(currentYear, currentMonth, day),
+                );
+
+                const isSelected = selectedDateIso === dateIso;
+                const isTodayDate = isToday(day);
+
+                const inTimeline = selectedProject
+                  ? isIsoBetween(
+                      dateIso,
+                      selectedProject.startDate,
+                      selectedProject.endDate,
+                    )
+                  : false;
+
+                const milestone = selectedProject?.milestones.find(
+                  (m) => m.date === dateIso,
+                );
+
+                return (
+                  <button
+                    key={dateIso}
+                    onClick={() => setSelectedDateIso(dateIso)}
+                    className={cn(
+                      "relative aspect-square flex items-center justify-center text-sm rounded-lg transition-colors",
+                      "hover:bg-accent hover:text-accent-foreground",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      inTimeline && "bg-primary/5",
+                      isSelected &&
+                        "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
+                      isTodayDate &&
+                        !isSelected &&
+                        "border border-primary text-primary",
+                    )}
+                    title={milestone ? milestone.label : undefined}
+                  >
+                    <span>{day}</span>
+                    {/* {milestone && (
+                      <span className="absolute bottom-1">
+                        <CircleDot
+                          className={cn(
+                            "size-3",
+                            isSelected
+                              ? "text-primary-foreground"
+                              : "text-primary",
+                          )}
+                        />
+                      </span>
+                    )} */}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           {selectedProject && (
-            <div className="rounded-xl border bg-muted/30 p-4">
+            <div className="rounded-md border bg-muted/30 p-4 h-full">
               <div className="text-sm font-medium">Milestones</div>
               <div className="mt-2 space-y-1">
                 {selectedProject.milestones.map((m) => (
@@ -369,205 +464,6 @@ export function EventPlanner() {
               </div>
             </div>
           )}
-        </CardContent>
-
-        {/* Right: Calendar + daily kanban */}
-        <div className="p-6">
-          <div className="grid 2xl:grid-cols-[1fr_420px] gap-6">
-            {/* Calendar */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <div className="font-semibold">
-                    {MONTHS[currentMonth]} {currentYear}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {selectedProject
-                      ? `${selectedProject.name} timeline highlighted`
-                      : "Select a project"}
-                  </div>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-8"
-                    onClick={goToPrevMonth}
-                  >
-                    <ChevronLeft className="size-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-8"
-                    onClick={goToNextMonth}
-                  >
-                    <ChevronRight className="size-4" />
-                  </Button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-7 gap-1">
-                {DAYS.map((day) => (
-                  <div
-                    key={day}
-                    className="text-center text-xs font-medium text-muted-foreground py-2"
-                  >
-                    {day}
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-7 gap-1">
-                {Array.from({ length: firstDay }).map((_, index) => (
-                  <div key={`empty-${index}`} className="aspect-square" />
-                ))}
-
-                {Array.from({ length: daysInMonth }).map((_, index) => {
-                  const day = index + 1;
-                  const dateIso = toIsoDate(
-                    new Date(currentYear, currentMonth, day),
-                  );
-
-                  const isSelected = selectedDateIso === dateIso;
-                  const isTodayDate = isToday(day);
-
-                  const inTimeline = selectedProject
-                    ? isIsoBetween(
-                        dateIso,
-                        selectedProject.startDate,
-                        selectedProject.endDate,
-                      )
-                    : false;
-
-                  const milestone = selectedProject?.milestones.find(
-                    (m) => m.date === dateIso,
-                  );
-
-                  return (
-                    <button
-                      key={dateIso}
-                      onClick={() => setSelectedDateIso(dateIso)}
-                      className={cn(
-                        "relative aspect-square flex items-center justify-center text-sm rounded-lg transition-colors",
-                        "hover:bg-accent hover:text-accent-foreground",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                        inTimeline && "bg-primary/5",
-                        isSelected &&
-                          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
-                        isTodayDate &&
-                          !isSelected &&
-                          "border border-primary text-primary",
-                      )}
-                      title={milestone ? milestone.label : undefined}
-                    >
-                      <span>{day}</span>
-                      {milestone && (
-                        <span className="absolute bottom-1">
-                          <CircleDot
-                            className={cn(
-                              "size-3",
-                              isSelected
-                                ? "text-primary-foreground"
-                                : "text-primary",
-                            )}
-                          />
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Daily kanban ("now timeslot") */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="font-semibold">Daily target</div>
-                  <div className="text-sm text-muted-foreground">
-                    {selectedDateLabel}
-                  </div>
-                </div>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setSelectedDateIso(toIsoDate(new Date()))}
-                >
-                  Today
-                </Button>
-              </div>
-
-              {!selectedProject ? (
-                <div className="flex items-center justify-center rounded-xl border border-dashed p-8 text-sm text-muted-foreground">
-                  Select a project to see tasks.
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 gap-3">
-                  {[
-                    { key: "todo" as const, title: "To do" },
-                    { key: "in-progress" as const, title: "In progress" },
-                    { key: "done" as const, title: "Done" },
-                  ].map((col) => (
-                    <div
-                      key={col.key}
-                      className="rounded-xl border bg-background/50"
-                    >
-                      <div className="flex items-center justify-between px-4 py-3">
-                        <div className="text-sm font-medium">{col.title}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {groupedTasks[col.key].length}
-                        </div>
-                      </div>
-                      <Separator />
-                      <div className="space-y-2 p-3">
-                        {groupedTasks[col.key].length === 0 ? (
-                          <div className="rounded-lg border border-dashed p-3 text-xs text-muted-foreground">
-                            No tasks
-                          </div>
-                        ) : (
-                          groupedTasks[col.key].map((task) => (
-                            <div
-                              key={task.id}
-                              className="rounded-lg border bg-card px-3 py-2"
-                            >
-                              <div className="text-sm font-medium">
-                                {task.title}
-                              </div>
-                              <div className="mt-2 flex items-center gap-2">
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-7 px-2"
-                                  disabled={task.status === "todo"}
-                                  onClick={() => moveTask(task.id, "left")}
-                                >
-                                  ←
-                                </Button>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-7 px-2"
-                                  disabled={task.status === "done"}
-                                  onClick={() => moveTask(task.id, "right")}
-                                >
-                                  →
-                                </Button>
-                                <div className="ml-auto text-xs text-muted-foreground">
-                                  {task.date}
-                                </div>
-                              </div>
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       </Card>
     </section>
