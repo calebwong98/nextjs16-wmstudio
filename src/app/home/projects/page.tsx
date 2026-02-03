@@ -1,8 +1,5 @@
 /**
  * Projects Page
- *
- * Showcases real-world projects and case studies.
- * Currently a placeholder with structure for future content.
  */
 
 export default function ProjectsPage() {

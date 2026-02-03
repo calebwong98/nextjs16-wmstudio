@@ -1,198 +1,203 @@
 /**
  * Contact Page
- *
- * Personal background, philosophy, and approach to work.
- * Humanizes the portfolio beyond just technical skills.
  */
 
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
-import { Mail } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  ArrowRight,
+  Clock,
+  FileText,
+  Link2Icon,
+  Mail,
+  MailIcon,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { ContactHeadshot } from "./_components/contact-headshot";
+
+const CONTACT = {
+  name: "Wong Jia Le",
+  handle: "calebwong98",
+  bio: "Hi",
+  title: "Frontend Developer",
+  location: "Kuala Lumpur, Malaysia",
+  timezone: "UTC +08:00",
+  responseTime: "within 24 – 48 hours",
+  email: "jialewong98@gmail.com",
+  website: {
+    label: "wmstudio.dev",
+    href: "https://wmstudio.dev",
+  },
+  linkedin: {
+    label: "linkedin.com/in/calebwong98",
+    href: "https://www.linkedin.com/in/calebwong98",
+  },
+  github: {
+    label: "github.com/calebwong98",
+    href: "https://github.com/calebwong98",
+  },
+  resume: {
+    label: "Download Resume (PDF)",
+    href: "/resume.pdf",
+  },
+} as const;
 
 export default function MyContactPage() {
+  const mailto = `mailto:${CONTACT.email}`;
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      {/* Main Content */}
-      <div className="lg:col-span-8">
-        {/* Main Headline */}
-        {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
-          Building interfaces that{" "}
-          <span className="text-primary">feel alive</span>
-        </h1> */}
+    <>
+      <div className="flex flex-col lg:flex-row gap-4 flex-1 mb-4">
+        <div className="flex-1 h-full">
+          <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase mb-4">
+            <span>[ +</span>
+            <span>Profile</span>
+            <span>+ ]</span>
+            <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
+          </h2>
+          <Card>
+            <CardContent className="space-y-4">
+              <ContactHeadshot name={CONTACT.name} />
 
-        {/* Subheading */}
-        {/* <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
-          I craft high-performance web experiences with obsessive attention to
-          detail, smooth animations, and thoughtful interactions. Every pixel
-          serves a purpose.
-        </p> */}
+              <div className="text-center">
+                <h2 className="text-xl font-bold uppercase">Wong Jia Le</h2>
+                <p className="text-sm text-muted-foreground leading-none">
+                  @{CONTACT.handle}
+                </p>
+              </div>
 
-        {/* Bio */}
-        {/* <div className="prose dark:prose-invert max-w-none mb-12">
-          <p className="text-lg leading-relaxed">
-            I'm a frontend engineer and product designer with a passion for
-            creating digital experiences that delight users. My work sits at the
-            intersection of design and engineering—I care deeply about both how
-            things look and how they're built.
-          </p>
-
-          <p>
-            Over the past 6 years, I've worked with startups and established
-            companies to build products used by millions. I specialize in
-            component architecture, animation systems, and performance
-            optimization. I believe the best interfaces are invisible—they get
-            out of the way and let users accomplish their goals effortlessly.
-          </p>
-
-          <p>
-            When I'm not coding, you'll find me exploring new coffee shops,
-            reading about design history, or tinkering with generative art. I'm
-            always looking for interesting problems to solve and people to
-            collaborate with.
-          </p>
-        </div> */}
-
-        {/* Philosophy */}
-        {/* <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Design Philosophy</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <PhilosophyCard
-              title="Performance is a feature"
-              description="Users don't think about load times—they just notice when things feel slow. I obsess over bundle sizes, render performance, and perceived speed."
-            />
-            <PhilosophyCard
-              title="Motion with purpose"
-              description="Animation should guide attention, provide feedback, and create continuity. Every transition needs to earn its place by improving clarity."
-            />
-            <PhilosophyCard
-              title="Accessible by default"
-              description="Good design works for everyone. I build with keyboard navigation, screen readers, and reduced motion preferences in mind from the start."
-            />
-            <PhilosophyCard
-              title="Simple > Clever"
-              description="The best code is code that's easy to understand and maintain. I favor explicit patterns over magic, composition over inheritance."
-            />
-          </div>
-        </section> */}
-
-        {/* Approach */}
-        {/* <section>
-          <h2 className="text-2xl font-bold mb-6">How I Work</h2>
-
-          <div className="space-y-6">
-            <ProcessStep
-              number="01"
-              title="Understand the problem"
-              description="Before writing any code, I dig into user needs, business constraints, and technical requirements. The best solutions come from deeply understanding the problem space."
-            />
-            <ProcessStep
-              number="02"
-              title="Prototype quickly"
-              description="I build rough versions fast to validate ideas. Static mockups can't capture how interactions feel—working prototypes reveal issues early."
-            />
-            <ProcessStep
-              number="03"
-              title="Iterate with feedback"
-              description="Design is a conversation. I ship early, gather feedback, and refine. The first version is never the final version."
-            />
-            <ProcessStep
-              number="04"
-              title="Polish the details"
-              description="The difference between good and great is in the details. Micro-interactions, error states, edge cases—these are where craft lives."
-            />
-          </div>
-        </section> */}
-      </div>
-
-      {/* Sidebar */}
-      <aside className="h-fit lg:col-span-4 space-y-6">
-        {/* Profile Image Placeholder */}
-        <div className="aspect-square rounded-2xl bg-muted/50 border border-dashed flex items-center justify-center">
-          <span className="text-sm text-muted-foreground">Photo</span>
+              <div className="flex items-center gap-2 py-4 justify-center">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-success" />
+                </span>
+                <span className="text-sm font-medium text-muted-foreground">
+                  Applying for Frontend Roles
+                </span>
+              </div>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2">
+                  <MapPin className="size-4 mt-0.5 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium">{CONTACT.location}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Clock className="size-4 mt-0.5 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium">
+                      {new Date().toLocaleTimeString("en-US", {
+                        timeZone: "Asia/Kuala_Lumpur",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}{" "}
+                      <span className="text-muted-foreground">
+                        ({CONTACT.timezone})
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <MailIcon className="size-4 mt-0.5 text-muted-foreground" />
+                  <p className="text-muted-foreground">
+                    {CONTACT.responseTime}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+            {/*
+              <CardFooter className="mt-auto">
+                <Button disabled asChild variant="outline" className="w-full">
+                  <Link href={CONTACT.resume.href} target="_blank" rel="noreferrer">
+                    <FileDown className="size-4" /> {CONTACT.resume.label}
+                  </Link>
+                </Button>
+              </CardFooter>
+            */}
+          </Card>
         </div>
 
-        {/* Quick Facts */}
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">
-              Location
-            </h3>
-            <p className="font-medium">Malaysia (GMT+8)</p>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">
-              Status
-            </h3>
-            <p className="font-medium flex items-center gap-2">
-              <span className="size-2 rounded-full bg-green-500" />
-              Open to opportunities
-            </p>
-          </div>
-        </div>
-
-        {/* Contact */}
-        <section className="">
+        <div className="flex-2 h-full">
+          <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase mb-4">
+            <span>[ +</span>
+            <span>Socials</span>
+            <span>+ ]</span>
+            <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
+          </h2>
           <div className="space-y-3 text-sm">
-            <a
-              href="mailto:hello@example.com"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            <Link
+              href={mailto}
+              className="bg-background flex items-center justify-between gap-3 rounded-sm border shadow-sm px-3 py-2 hover:bg-accent/40 transition-colors"
             >
-              <Mail className="size-4" />
-              hello@example.com
-            </a>
-            <a
-              href="https://github.com"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              <span className="flex items-center gap-2">
+                <Mail className="size-4" /> {CONTACT.email}
+              </span>
+              <Link2Icon className="size-3 text-muted-foreground" />
+            </Link>
+            <Link
+              href={CONTACT.github.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-background flex items-center justify-between gap-3 rounded-sm border shadow-sm px-3 py-2 hover:bg-accent/40 transition-colors"
             >
-              <GitHubIcon className="size-4" />
-              github.com/username
-            </a>
-            <a
-              href="https://linkedin.com"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              <span className="flex items-center gap-2">
+                <GitHubIcon className="size-4" /> {CONTACT.github.label}
+              </span>
+              <Link2Icon className="size-3 text-muted-foreground" />
+            </Link>
+            <Link
+              href={CONTACT.linkedin.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-background flex items-center justify-between gap-3 rounded-sm border shadow-sm px-3 py-2 hover:bg-accent/40 transition-colors"
             >
-              <LinkedInIcon className="size-4" />
-              linkedin.com/in/username
-            </a>
+              <span className="flex items-center gap-2">
+                <LinkedInIcon className="size-4" /> {CONTACT.linkedin.label}
+              </span>
+              <Link2Icon className="size-3 text-muted-foreground" />
+            </Link>
           </div>
-        </section>
-      </aside>
-    </div>
-  );
-}
-
-function PhilosophyCard({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="p-6 rounded-xl border bg-card">
-      <h3 className="font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
-
-function ProcessStep({
-  number,
-  title,
-  description,
-}: {
-  number: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="flex gap-6">
-      <span className="text-4xl font-bold text-muted/50">{number}</span>
-      <div>
-        <h3 className="font-semibold mb-1">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        </div>
       </div>
-    </div>
+
+      <Link
+        href="/resume"
+        className={cn(
+          "shadow-sm h-fit mt-auto lg:col-span-3 group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
+          "hover:shadow-lg hover:-translate-y-1",
+
+          "bg-card hover:border-foreground/20",
+        )}
+      >
+        {/* Icon */}
+        <div
+          className={cn(
+            "size-10 rounded-lg flex items-center justify-center",
+            "bg-secondary",
+          )}
+        >
+          <FileText className="size-5" />
+        </div>
+
+        {/* Content */}
+        <div className="space-y-1">
+          <h3 className="font-semibold text-lg flex items-center gap-2">
+            View Resume
+            <ArrowRight
+              className={cn(
+                "size-4 opacity-0 -translate-x-2 transition-all",
+                "group-hover:opacity-100 group-hover:translate-x-0",
+              )}
+            />
+          </h3>
+          <p className={cn("text-sm", "text-muted-foreground")}>
+            View my resume to learn more about my experience and skills.
+          </p>
+        </div>
+      </Link>
+    </>
   );
 }

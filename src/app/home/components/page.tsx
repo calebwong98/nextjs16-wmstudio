@@ -1,9 +1,5 @@
 /**
  * Component Showcase Index Page
- *
- * Displays all available demo components in a grid layout.
- * Server component for fast initial load - component previews
- * are loaded on individual detail pages.
  */
 
 import Link from "next/link";
@@ -15,7 +11,7 @@ export default function ComponentsPage() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {/* {componentRegistry.map((component, index) => (
+      {componentRegistry.map((component, index) => (
         <ComponentCard
           key={component.slug}
           slug={component.slug}
@@ -24,7 +20,7 @@ export default function ComponentsPage() {
           tags={component.tags}
           index={index}
         />
-      ))} */}
+      ))}
     </div>
   );
 }

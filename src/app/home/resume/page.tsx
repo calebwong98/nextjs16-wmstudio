@@ -1,21 +1,18 @@
 /**
  * Resume Page
- *
- * Professional experience and qualifications.
- * Clean, scannable layout optimized for recruiters.
  */
 
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Link2Icon, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function ResumePage() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1">
+    <div className="grid grid-cols-1 gap-4 flex-1">
       {/* Main Content */}
-      <div className="lg:col-span-2">
+      <div className="">
         <section>
           <ResumeHeading title="Frontend Developer" />
           <ResumeContent>
@@ -44,8 +41,9 @@ export default function ResumePage() {
           <ResumeContent>
             <ResumeItem
               title="Klinikkhome.com"
+              href="https://klinikkhome.com"
               subtitle="Full-Stack Developer"
-              period="JUN 2025 - DEC 2025"
+              period={{ dates: "JUN 2025 - DEC 2025", durations: "6 months" }}
               tags={[
                 { title: "React", theme: "blue" },
                 { title: "Next.js", theme: "blue" },
@@ -63,8 +61,9 @@ export default function ResumePage() {
 
             <ResumeItem
               title="CalebWONG.studio"
+              href="https://calebwong.studio"
               subtitle="Full-Stack Developer (self-employed)"
-              period="JUN 2023 - PRESENT"
+              period={{ dates: "JUN 2023 - DEC 2023", durations: "6 months" }}
               tags={[
                 { title: "React", theme: "blue" },
                 { title: "Next.js", theme: "blue" },
@@ -88,51 +87,14 @@ export default function ResumePage() {
           <ResumeContent>
             <ResumeItem
               title="Beijing University of Chinese Medicine"
+              href="https://www.bucm.edu.cn/"
               subtitle="Bachelor of Chinese Medicine"
-              period="2016 - 2021"
+              period={{ dates: "JUN 2016 - JULY 2021", durations: "5 years" }}
               isListItem
             />
           </ResumeContent>
         </section>
       </div>
-
-      {/* Sidebar */}
-      <aside className="flex flex-col justify-between gap-4">
-        {/* Skills */}
-        <section>
-          <ResumeHeading title="Technical Skills" />
-
-          <ResumeContent>
-            <ResumeItem
-              title="Languages"
-              tags={[
-                { title: "TypeScript", theme: "blue" },
-                { title: "JavaScript", theme: "yellow" },
-                { title: "HTML/CSS", theme: "orange" },
-                { title: "Python", theme: "green" },
-              ]}
-            />
-            <ResumeItem
-              title="Frameworks"
-              tags={[
-                { title: "React", theme: "blue" },
-                { title: "Next.js", theme: "blue" },
-                { title: "Node.js", theme: "green" },
-                { title: "Tailwind CSS", theme: "teal" },
-              ]}
-            />
-            <ResumeItem
-              title="Tools"
-              tags={[
-                { title: "Git", theme: "orange" },
-                { title: "Figma", theme: "pink" },
-                { title: "PostgreSQL", theme: "blue" },
-                { title: "Docker", theme: "cyan" },
-              ]}
-            />
-          </ResumeContent>
-        </section>
-      </aside>
 
       <Link
         href="/contact"
@@ -176,9 +138,9 @@ export default function ResumePage() {
 function ResumeHeading({ title }: { title: string }) {
   return (
     <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase">
-      <span>[</span>
+      <span>[ +</span>
       <span>{title}</span>
-      <span>]</span>
+      <span>+ ]</span>
       <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
     </h2>
   );
@@ -190,6 +152,7 @@ function ResumeContent({ children }: { children: React.ReactNode }) {
 
 function ResumeItem({
   title,
+  href = "#",
   subtitle,
   period,
   description,
@@ -199,8 +162,12 @@ function ResumeItem({
   isListItem = false,
 }: {
   title: string;
+  href?: string;
   subtitle?: string;
-  period?: string;
+  period?: {
+    dates: string;
+    durations?: string;
+  };
   description?: string;
   tags?: {
     title: string;
@@ -220,18 +187,33 @@ function ResumeItem({
       {isListItem && (
         <div className="absolute -left-2.25 top-7 size-4 rounded-full bg-background border border-muted-foreground/40" />
       )}
-      <div className="flex items-start justify-between flex-wrap gap-2 py-2">
+      <div className="flex sm:items-end flex-col sm:flex-row justify-between flex-wrap gap-2 py-2">
         <div>
-          <h3 className="font-semibold">{title}</h3>
+          <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center hover:underline underline-offset-4"
+          >
+            <h3 className="font-semibold">{title}</h3>
+            <Link2Icon className="ml-2 size-3 group-hover:text-foreground inline-block text-muted-foreground" />
+          </Link>
           <p className="text-sm text-muted-foreground">{subtitle}</p>
         </div>
-        <span className="text-sm text-muted-foreground">{period}</span>
+        <div className="flex justify-between w-full sm:w-fit sm:flex-col sm:items-end">
+          <span className="text-sm text-foreground uppercase">
+            {period?.dates}
+          </span>
+          <span className="text-sm text-muted-foreground uppercase">
+            [ {period?.durations} ]
+          </span>
+        </div>
       </div>
       {description && (
         <p className="text-sm text-muted-foreground mb-3">{description}</p>
       )}
       {tags && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
             <Badge
               key={tag.title}
