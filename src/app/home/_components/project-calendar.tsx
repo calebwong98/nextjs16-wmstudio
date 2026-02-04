@@ -11,10 +11,6 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Project } from "./project-timeline";
 
-const LANE_TOP_PX = 24;
-const LANE_HEIGHT_PX = 14;
-const MAX_VISIBLE_LANES = 4;
-
 const MONTHS = [
   "January",
   "February",
@@ -62,20 +58,14 @@ function isIsoBetween(
 }
 
 export function ProjectCalendar({
-  selectedProjects,
-  laneByProjectId,
+  selectedProject,
 }: {
-  selectedProjects?: Project[];
-  laneByProjectId?: Record<string, number>;
+  selectedProject?: Project;
 }) {
   const today = new Date();
 
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-
-  const [selectedDateIso, setSelectedDateIso] = useState<string>(
-    toIsoDate(today),
-  );
 
   const daysInMonth = getDaysInMonth(currentYear, currentMonth);
   const firstDay = getFirstDayOfMonth(currentYear, currentMonth);
@@ -144,7 +134,7 @@ export function ProjectCalendar({
           return (
             <div
               key={`empty-end-${index}`}
-              className="relative border border-transparent rounded-md bg-muted aspect-square flex items-center justify-center text-sm text-muted-foreground/50"
+              className="relative border border-transparent rounded-sm bg-muted aspect-square flex items-center justify-center text-sm text-muted-foreground/50"
             >
               <span className="absolute left-1 top-1 text-xs font-medium opacity-90">
                 {day}
@@ -158,60 +148,29 @@ export function ProjectCalendar({
           const dateIso = toIsoDate(new Date(currentYear, currentMonth, day));
           const isTodayDate = isToday(day);
 
-          const activeProjects = (selectedProjects ?? []).filter((project) =>
-            isIsoBetween(dateIso, project.startDate, project.endDate),
-          );
-
-          const activeWithLane = activeProjects
-            .map((project) => ({
-              project,
-              lane: laneByProjectId?.[project.id] ?? 0,
-            }))
-            .sort(
-              (a, b) =>
-                a.lane - b.lane || a.project.name.localeCompare(b.project.name),
-            );
-
-          const visible = activeWithLane.filter(
-            (p) => p.lane < MAX_VISIBLE_LANES,
-          );
-          const hiddenCount = activeWithLane.length - visible.length;
+          const inTimeline = selectedProject
+            ? isIsoBetween(
+                dateIso,
+                selectedProject.startDate,
+                selectedProject.endDate,
+              )
+            : false;
 
           return (
             <div
               key={dateIso}
-              onClick={() => setSelectedDateIso(dateIso)}
               className={cn(
-                "relative aspect-square overflow-hidden rounded-lg transition-colors",
+                "relative aspect-square overflow-hidden rounded-sm transition-colors",
                 "hover:bg-accent hover:text-accent-foreground",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 "border",
                 isTodayDate && "border border-primary text-primary",
+                inTimeline && selectedProject?.colorClass,
               )}
             >
-              <span className="absolute left-1 top-1 text-xs font-medium opacity-90">
+              <span className="absolute left-1 top-1 text-xs opacity-90">
                 {day}
               </span>
-
-              {/* Stable project blocks (lanes) */}
-              {visible.map(({ project, lane }) => (
-                <div
-                  key={`${dateIso}:${project.id}`}
-                  className={cn(
-                    "pointer-events-none absolute left-1 right-1 rounded-xs border px-1",
-                    "text-[10px] leading-3 h-3 truncate",
-                    project.colorClass,
-                  )}
-                  style={{ top: LANE_TOP_PX + lane * LANE_HEIGHT_PX }}
-                  title={project.name}
-                ></div>
-              ))}
-
-              {hiddenCount > 0 && (
-                <div className="pointer-events-none absolute bottom-1 right-1 text-[10px] text-muted-foreground">
-                  +{hiddenCount}
-                </div>
-              )}
             </div>
           );
         })}
@@ -222,7 +181,7 @@ export function ProjectCalendar({
           return (
             <div
               key={`empty-end-${index}`}
-              className="relative border border-transparent rounded-md bg-muted aspect-square flex items-center justify-center text-sm text-muted-foreground/50"
+              className="relative border border-transparent rounded-sm bg-muted aspect-square flex items-center justify-center text-sm text-muted-foreground/50"
             >
               <span className="absolute left-1 top-1 text-xs font-medium opacity-90">
                 {day}
