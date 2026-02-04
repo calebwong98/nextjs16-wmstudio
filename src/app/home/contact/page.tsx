@@ -13,10 +13,13 @@ import {
   MailIcon,
   MapPin,
   MessageCircle,
+  Section,
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ContactHeadshot } from "./_components/contact-headshot";
+import { SectionHeading } from "../_layout/SectionHeading";
+import { ResumeCTA } from "../_layout/SectionCTA";
 
 const CONTACT = {
   name: "Wong Jia Le",
@@ -52,13 +55,9 @@ export default function MyContactPage() {
     <>
       <div className="flex flex-col lg:flex-row gap-4 flex-1 mb-4">
         <div className="flex-1 h-full">
-          <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase mb-4">
-            <span>[ +</span>
-            <span>Profile</span>
-            <span>+ ]</span>
-            <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
-          </h2>
-          <Card>
+          <SectionHeading title="Profile" />
+
+          <Card className="my-4">
             <CardContent className="space-y-4">
               <ContactHeadshot name={CONTACT.name} />
 
@@ -121,13 +120,8 @@ export default function MyContactPage() {
         </div>
 
         <div className="flex-2 h-full">
-          <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase mb-4">
-            <span>[ +</span>
-            <span>Socials</span>
-            <span>+ ]</span>
-            <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
-          </h2>
-          <div className="space-y-3 text-sm">
+          <SectionHeading title="Socials" />
+          <div className="space-y-3 my-4 text-sm">
             <Link
               href={mailto}
               className="bg-background flex items-center justify-between gap-3 rounded-sm border shadow-sm px-3 py-2 hover:bg-accent/40 transition-colors"
@@ -163,41 +157,7 @@ export default function MyContactPage() {
         </div>
       </div>
 
-      <Link
-        href="/resume"
-        className={cn(
-          "shadow-sm h-fit mt-auto lg:col-span-3 group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
-          "hover:shadow-lg hover:-translate-y-1",
-
-          "bg-card hover:border-foreground/20",
-        )}
-      >
-        {/* Icon */}
-        <div
-          className={cn(
-            "size-10 rounded-lg flex items-center justify-center",
-            "bg-secondary",
-          )}
-        >
-          <FileText className="size-5" />
-        </div>
-
-        {/* Content */}
-        <div className="space-y-1">
-          <h3 className="font-semibold text-lg flex items-center gap-2">
-            View Resume
-            <ArrowRight
-              className={cn(
-                "size-4 opacity-0 -translate-x-2 transition-all",
-                "group-hover:opacity-100 group-hover:translate-x-0",
-              )}
-            />
-          </h3>
-          <p className={cn("text-sm", "text-muted-foreground")}>
-            View my resume to learn more about my experience and skills.
-          </p>
-        </div>
-      </Link>
+      <ResumeCTA />
     </>
   );
 }

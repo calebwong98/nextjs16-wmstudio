@@ -2,10 +2,13 @@
  * Projects Page
  */
 
+import { SectionHeading } from "../_layout/SectionHeading";
+
 export default function ProjectsPage() {
   return (
-    <div className="grid grid-cols-1 gap-4">
-      {/* <ProjectCard
+    <section className="flex flex-col gap-4">
+      <SectionHeading title="Projects" />
+      <ProjectCard
         title="E-Commerce Platform"
         description="Full-stack marketplace with real-time inventory, payment processing, and admin dashboard."
         tags={["Next.js", "PostgreSQL", "Stripe", "TypeScript"]}
@@ -16,8 +19,8 @@ export default function ProjectsPage() {
         description="Comprehensive component library with theming, accessibility, and documentation."
         tags={["React", "Storybook", "Tailwind", "Radix UI"]}
         status="Open Source"
-      /> */}
-    </div>
+      />
+    </section>
   );
 }
 

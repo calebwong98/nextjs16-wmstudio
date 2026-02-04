@@ -5,8 +5,12 @@
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { ArrowRight, Link2Icon, Mail } from "lucide-react";
+import { Link2Icon } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
+
+import { SectionHeading } from "../_layout/SectionHeading";
+import { ContactCTA } from "../_layout/SectionCTA";
 
 export default function ResumePage() {
   return (
@@ -14,7 +18,7 @@ export default function ResumePage() {
       {/* Main Content */}
       <div className="">
         <section>
-          <ResumeHeading title="Frontend Developer" />
+          <SectionHeading title="Frontend Developer" />
           <ResumeContent>
             <h2 className="text-xl font-bold uppercase pt-4 ">Wong Jia Le</h2>
             <div className="flex items-center gap-2 py-4">
@@ -36,7 +40,7 @@ export default function ResumePage() {
 
         {/* Experience */}
         <section>
-          <ResumeHeading title="Experience" />
+          <SectionHeading title="Experience" />
 
           <ResumeContent>
             <ResumeItem
@@ -82,7 +86,7 @@ export default function ResumePage() {
 
         {/* Education */}
         <section>
-          <ResumeHeading title="Education" />
+          <SectionHeading title="Education" />
 
           <ResumeContent>
             <ResumeItem
@@ -96,53 +100,8 @@ export default function ResumePage() {
         </section>
       </div>
 
-      <Link
-        href="/contact"
-        className={cn(
-          "lg:col-span-3 group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
-          "hover:shadow-lg hover:-translate-y-1",
-
-          "bg-foreground text-background border-foreground",
-        )}
-      >
-        {/* Icon */}
-        <div
-          className={cn(
-            "size-10 rounded-lg flex items-center justify-center",
-            "bg-background/10",
-          )}
-        >
-          <Mail className="size-5" />
-        </div>
-
-        {/* Content */}
-        <div className="space-y-1">
-          <h3 className="font-semibold text-lg flex items-center gap-2">
-            Let&apos;s Talk!
-            <ArrowRight
-              className={cn(
-                "size-4 opacity-0 -translate-x-2 transition-all",
-                "group-hover:opacity-100 group-hover:translate-x-0",
-              )}
-            />
-          </h3>
-          <p className={cn("text-sm", "text-background/70")}>
-            Connect with me through socials
-          </p>
-        </div>
-      </Link>
+      <ContactCTA />
     </div>
-  );
-}
-
-function ResumeHeading({ title }: { title: string }) {
-  return (
-    <h2 className="flex gap-1.5 w-full font-medium text-foreground uppercase">
-      <span>[ +</span>
-      <span>{title}</span>
-      <span>+ ]</span>
-      <span className="h-px flex-1 my-auto bg-muted-foreground/40"></span>
-    </h2>
   );
 }
 

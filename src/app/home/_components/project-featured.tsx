@@ -1,7 +1,6 @@
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 type Project = {
   title: string;
@@ -37,28 +36,18 @@ const featuredProject: Project = {
 };
 
 /**
- * Featured Project Section
+ * Featured Project
  *
  * Showcases the most impressive project with details
  */
-export function FeaturedProjectSection() {
+export function FeaturedProject() {
   return (
-    <section className="py-8 md:py-12">
+    <section className="">
       <div className="space-y-6">
-        {/* Section Header */}
-        <div className="flex items-center gap-2">
-          <h2 className="text-2xl font-bold tracking-tight">
-            Featured Project
-          </h2>
-          <span className="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">
-            Latest
-          </span>
-        </div>
-
         {/* Project Card */}
         <div className="group relative overflow-hidden rounded-2xl border bg-card">
           {/* Gradient Accent */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           <div className="relative p-6 md:p-8 space-y-6">
             {/* Project Header */}
