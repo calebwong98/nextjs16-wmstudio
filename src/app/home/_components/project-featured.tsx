@@ -14,7 +14,7 @@ type Project = {
 };
 
 const featuredProject: Project = {
-  title: "Portfolio & Component Library",
+  title: "WMStudio.dev",
   description: "A modern developer portfolio built with Next.js 16",
   longDescription:
     "This portfolio showcases a custom component library featuring interactive animations, accessible UI patterns, and a modular architecture. Built from scratch to demonstrate frontend expertise.",
