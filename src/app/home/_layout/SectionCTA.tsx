@@ -50,7 +50,7 @@ function SectionCTA({
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
+        "mt-auto group relative flex flex-col gap-4 p-6 rounded-xl border transition-all duration-300",
         "hover:shadow-lg hover:-translate-y-1",
         variant === "primary"
           ? "bg-foreground text-background border-foreground"
